@@ -1,0 +1,50 @@
+<header>
+  <h2>Cart</h2>
+  <button mat-button routerLink="">
+    <mat-icon>arrow_back</mat-icon>Back to shop
+  </button>
+</header>
+
+@if (cart.totalQuantity() > 0) {
+<mat-list>
+  @for(item of cart.itemsInCart(); track item) {
+  <mat-list-item>
+    <p matListItemTitle>{{ item.product.name }}</p>
+
+    <p matListItemLine>
+      <strong>Price: </strong>
+      £{{ item.product.price }} x {{ item.quantity }} = £{{ item.totalPrice() }}
+    </p>
+
+    <button
+      mat-icon-button
+      matListItemMeta
+      (click)="cart.decreaseItemQuantity(item)"
+    >
+      <mat-icon>remove_circle</mat-icon>
+    </button>
+
+    <button
+      mat-icon-button
+      matListItemMeta
+      (click)="cart.increaseItemQuantity(item)"
+    >
+      <mat-icon>add_circle</mat-icon>
+    </button>
+
+    <button mat-icon-button matListItemMeta (click)="cart.removeItem(item)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-list-item>
+
+  }
+  <mat-list-item role="listitem">
+    <p>Shiping: {{ cart.deliveryFee() ? '£' + cart.deliveryFee() : 'Free' }}</p>
+  </mat-list-item>
+</mat-list>
+
+<p class="total"><strong>Total: </strong>£{{ cart.total() }}</p>
+
+} @else {
+<app-empty-cart class="empty-cart"></app-empty-cart>
+}
