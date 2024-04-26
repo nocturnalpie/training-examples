@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
-import { Product } from './product';
 import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
+import { Component, Inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { CartService } from '../cart/service/cart.service';
+import { Product } from './product';
+import { CartService } from '../../main';
+import { ICartService } from '../cart/service/cart.service.interface';
 
 @Component({
   selector: 'app-products',
@@ -24,5 +25,5 @@ export class ProductsComponent {
     { id: 7, name: 'Tamagotchi', price: 25 },
   ];
 
-  constructor(public readonly cart: CartService) {}
+  constructor(@Inject(CartService) public readonly cart: ICartService) {}
 }

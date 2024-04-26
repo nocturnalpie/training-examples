@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { MatListModule } from '@angular/material/list';
+import { Component, Inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { CartService } from '../service/cart.service';
+import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { EmptyCartComponent } from '../empty-cart/empty-cart.component';
+import { CartService } from '../../../main';
+import { ICartService } from '../service/cart.service.interface';
 
 @Component({
   selector: 'app-cart-summary',
@@ -13,5 +14,5 @@ import { EmptyCartComponent } from '../empty-cart/empty-cart.component';
   styleUrl: './cart-summary.component.scss',
 })
 export class CartSummaryComponent {
-  constructor(public readonly cart: CartService) {}
+  constructor(@Inject(CartService) public readonly cart: ICartService) {}
 }

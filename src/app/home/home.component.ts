@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { Component, Inject } from '@angular/core';
+import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatBadgeModule } from '@angular/material/badge';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterModule } from '@angular/router';
 import { CartSummaryComponent } from '../cart/cart-summary/cart-summary.component';
-import { CartService } from '../cart/service/cart.service';
+import { ICartService } from '../cart/service/cart.service.interface';
+import { CartService } from '../../main';
 
 @Component({
   selector: 'app-home',
@@ -24,5 +25,5 @@ import { CartService } from '../cart/service/cart.service';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  constructor(public readonly cart: CartService) {}
+  constructor(@Inject(CartService) public readonly cart: ICartService) {}
 }
