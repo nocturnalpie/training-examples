@@ -27,7 +27,7 @@
           },
           "options": {
             "index": "src/index.html",
-            "browser": "src/main.ts",
+            "browser": "src/app/app.config.ts",
             "polyfills": ["zone.js"],
             "outputPath": "dist",
             "styles": [
@@ -64,7 +64,14 @@
       "prefix": "app",
       "projectType": "application",
       "root": "",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
       "sourceRoot": "src"
     }
   },
