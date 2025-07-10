@@ -1,8 +1,8 @@
-import { computed, signal } from '@angular/core';
+import { computed, EnvironmentProviders, makeEnvironmentProviders, signal } from '@angular/core';
 import { Product } from '../../../products/product';
 import { CartItem } from '../../cart-item';
 import { CartHelpers, INITIAL_STATE } from '../cart.helpers';
-import { ICartService } from '../cart.service.interface';
+import { CartService, ICartService } from '../cart.service.interface';
 
 export class CartSignalsService implements ICartService {
 	get itemsInCart(): CartItem[] {
@@ -39,3 +39,7 @@ export class CartSignalsService implements ICartService {
 	removeItem = (itemToRemove: CartItem): void => 
 		this._itemsInCart.update((cartItems) => CartHelpers.removeItem(cartItems, itemToRemove))
 }
+
+export const provideSignalsStore = (): EnvironmentProviders => makeEnvironmentProviders([
+	{ provide: CartService, useClass: CartSignalsService }
+]);

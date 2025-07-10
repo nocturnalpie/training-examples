@@ -1,5 +1,8 @@
+import { InjectionToken } from "@angular/core";
 import { Product } from "../../products/product";
 import { CartItem } from "../cart-item";
+
+export const CartService = new InjectionToken<ICartService>('Cart Service Interface');
 
 export interface ICartService {
 	itemsInCart: CartItem[];

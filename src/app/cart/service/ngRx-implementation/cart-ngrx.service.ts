@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import { EnvironmentProviders, Injectable, makeEnvironmentProviders } from '@angular/core';
 import { Store, createAction, createFeatureSelector, createReducer, createSelector, on, props, provideState, provideStore } from '@ngrx/store';
 import { Product } from '../../../products/product';
 import { CartItem } from '../../cart-item';
 import { CartHelpers, INITIAL_STATE } from '../cart.helpers';
-import { ICartService } from '../cart.service.interface';
+import { CartService, ICartService } from '../cart.service.interface';
 
 @Injectable({
 	providedIn: 'root'
@@ -76,7 +76,8 @@ const CART_REDUCER = createReducer(
 
 const CART_STATE_FEATURE_NAME = 'cart'
 
-export const NGRX_STATE_PROVIDERS = [
+export const provideNgRxStore = (): EnvironmentProviders => makeEnvironmentProviders([
 	provideStore(),
-	provideState({ name: CART_STATE_FEATURE_NAME, reducer: CART_REDUCER })
-]
+	provideState({ name: CART_STATE_FEATURE_NAME, reducer: CART_REDUCER }),
+	{ provide: CartService, useClass: CartNgrxService }
+]);
