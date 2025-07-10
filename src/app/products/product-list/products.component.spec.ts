@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import {
 	CartService,
 	ICartService,
-} from '../cart/service/cart.service.interface';
+} from '../../cart/service/cart.service.interface';
 import { ProductsComponent } from './products.component';
 
 describe('ProductsComponent', () => {

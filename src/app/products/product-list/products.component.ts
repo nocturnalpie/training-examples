@@ -3,8 +3,8 @@ import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { CartService } from '../cart/service/cart.service.interface';
-import { Product } from './product';
+import { CartService } from '../../cart/service/cart.service.interface';
+import { Product } from '../product';
 
 @Component({
 	selector: 'app-products',

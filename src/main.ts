@@ -5,7 +5,7 @@ import { RouterModule, Routes, provideRouter } from '@angular/router';
 import 'zone.js';
 import { CartComponent } from './app/cart/cart.component';
 import { HomeComponent } from './app/home/home.component';
-import { ProductsComponent } from './app/products/products.component';
+import { ProductsComponent } from './app/products/product-list/products.component';
 
 /* Choose an implementation here */
 // import { provideNgRxStore } from './app/cart/service/ngRx-implementation/cart-ngrx.service';
