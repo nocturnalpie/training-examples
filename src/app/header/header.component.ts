@@ -9,7 +9,7 @@ import { CartSummaryComponent } from '../cart/cart-summary/cart-summary.componen
 import { CartService } from '../cart/service/cart.service.interface';
 
 @Component({
-	selector: 'app-home',
+	selector: 'app-header',
 	imports: [
 		CartSummaryComponent,
 		RouterModule,
@@ -19,9 +19,9 @@ import { CartService } from '../cart/service/cart.service.interface';
 		MatBadgeModule,
 		MatMenuModule,
 	],
-	templateUrl: './home.component.html',
-	styleUrl: './home.component.scss'
+	templateUrl: './header.component.html',
+	styleUrl: './header.component.scss'
 })
-export class HomeComponent {
+export class HeaderComponent {
 	protected readonly cart = inject(CartService);
 }

@@ -1,15 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HomeComponent } from './home.component';
+import { AppComponent } from './app.component';
 import { provideRouter } from '@angular/router';
-import { CartService, ICartService } from '../cart/service/cart.service.interface';
+import { CartService, ICartService } from './cart/service/cart.service.interface';
 
-describe('HomeComponent', () => {
-	let component: HomeComponent;
-	let fixture: ComponentFixture<HomeComponent>;
+describe('AppComponent', () => {
+	let component: AppComponent;
+	let fixture: ComponentFixture<AppComponent>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [HomeComponent],
+			imports: [AppComponent],
 			providers: [
 				provideRouter([]),
 				{
@@ -20,7 +20,7 @@ describe('HomeComponent', () => {
 			]
 		}).compileComponents();
 
-		fixture = TestBed.createComponent(HomeComponent);
+		fixture = TestBed.createComponent(AppComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});
