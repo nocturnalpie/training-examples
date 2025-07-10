@@ -25,9 +25,8 @@ const ROUTES: Routes = [
 
 @Component({
 	selector: 'app-root',
-	standalone: true,
 	template: `<app-home>`,
-	imports: [RouterModule, HomeComponent],
+	imports: [RouterModule, HomeComponent]
 })
 export class App {
 	name = 'Angular';

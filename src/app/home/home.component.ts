@@ -6,24 +6,22 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { CartSummaryComponent } from '../cart/cart-summary/cart-summary.component';
-import { ICartService } from '../cart/service/cart.service.interface';
-import { CartService } from '../../main';
+import { CartService, ICartService } from '../cart/service/cart.service.interface';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [
-    CartSummaryComponent,
-    RouterModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatBadgeModule,
-    MatMenuModule,
-  ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+	selector: 'app-home',
+	imports: [
+		CartSummaryComponent,
+		RouterModule,
+		MatToolbarModule,
+		MatButtonModule,
+		MatIconModule,
+		MatBadgeModule,
+		MatMenuModule,
+	],
+	templateUrl: './home.component.html',
+	styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  constructor(@Inject(CartService) public readonly cart: ICartService) {}
+	constructor(@Inject(CartService) public readonly cart: ICartService) { }
 }
