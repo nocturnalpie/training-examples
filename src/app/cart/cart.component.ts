@@ -1,10 +1,10 @@
-import { Component, inject, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { EmptyCartComponent } from './empty-cart/empty-cart.component';
-import { CartService, ICartService } from './service/cart.service.interface';
+import { CartService } from './service/cart.service.interface';
 
 @Component({
 	selector: 'app-cart',
