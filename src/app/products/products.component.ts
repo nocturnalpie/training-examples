@@ -4,13 +4,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { Product } from './product';
-import { CartService, ICartService } from '../cart/service/cart.service.interface';
+import {
+	CartService,
+	ICartService,
+} from '../cart/service/cart.service.interface';
 
 @Component({
 	selector: 'app-products',
 	imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule],
 	templateUrl: './products.component.html',
-	styleUrl: './products.component.scss'
+	styleUrl: './products.component.scss',
 })
 export class ProductsComponent {
 	items: Product[] = [

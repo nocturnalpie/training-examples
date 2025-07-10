@@ -36,7 +36,7 @@ export class CartSignalsService implements ICartService {
 	decreaseItemQuantity = (itemToUpdate: CartItem) =>
 		this._itemsInCart.update((cartItems) => CartHelpers.decreaseItemQuantity(cartItems, itemToUpdate))
 
-	removeItem = (itemToRemove: CartItem): void => 
+	removeItem = (itemToRemove: CartItem): void =>
 		this._itemsInCart.update((cartItems) => CartHelpers.removeItem(cartItems, itemToRemove))
 }
 

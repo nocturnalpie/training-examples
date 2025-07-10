@@ -1,12 +1,10 @@
-import { computed } from '@angular/core';
 import { Product } from '../products/product';
 
 export class CartItem {
-	get totalPrice(): number {
-		return this._totalPrice();
-	}
+	public readonly totalPrice = this.product.price * this.quantity;
 
-	private _totalPrice = computed(() => this.product.price * this.quantity);
-
-	constructor(public product: Product, public quantity: number = 1) { }
+	constructor(
+		public readonly product: Product, 
+		public readonly quantity: number = 1
+	) { }
 }

@@ -1,22 +1,31 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {
+	CartService,
+	ICartService,
+} from '../cart/service/cart.service.interface';
 import { ProductsComponent } from './products.component';
 
-describe('ShopComponent', () => {
-  let component: ProductsComponent;
-  let fixture: ComponentFixture<ProductsComponent>;
+describe('ProductsComponent', () => {
+	let component: ProductsComponent;
+	let fixture: ComponentFixture<ProductsComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ProductsComponent],
-    }).compileComponents();
+	beforeEach(async () => {
+		await TestBed.configureTestingModule({
+			imports: [ProductsComponent],
+			providers: [
+				{
+					provide: CartService,
+					useValue: jasmine.createSpyObj<ICartService>([]),
+				},
+			],
+		}).compileComponents();
 
-    fixture = TestBed.createComponent(ProductsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+		fixture = TestBed.createComponent(ProductsComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it('should create', () => {
+		expect(component).toBeTruthy();
+	});
 });

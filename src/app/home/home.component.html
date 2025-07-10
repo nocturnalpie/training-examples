@@ -1,21 +1,21 @@
 <mat-toolbar color="primary">
-  <div></div>
+	<div></div>
 
-  <button mat-button routerLink="">
-    <h1>Welcome to the Toy Shop</h1>
-  </button>
+	<button mat-button routerLink="">
+		<h1>Welcome to the Toy Shop</h1>
+	</button>
 
-  <div>
-    <button mat-icon-button [matMenuTriggerFor]="cartMenu">
-      <mat-icon [matBadge]="cart.totalQuantity" matBadgeColor="accent">
-        shopping_cart
-      </mat-icon>
-    </button>
-  </div>
+	<div>
+		<button mat-icon-button [matMenuTriggerFor]="cartMenu">
+			<mat-icon [matBadge]="cart.totalQuantity" matBadgeColor="accent">
+				shopping_cart
+			</mat-icon>
+		</button>
+	</div>
 </mat-toolbar>
 
 <mat-menu #cartMenu="matMenu">
-  <app-cart-summary></app-cart-summary>
+	<app-cart-summary></app-cart-summary>
 </mat-menu>
 
 <router-outlet></router-outlet>
