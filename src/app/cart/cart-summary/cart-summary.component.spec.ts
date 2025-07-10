@@ -10,7 +10,11 @@ describe('CartSummaryComponent', () => {
 		await TestBed.configureTestingModule({
 			imports: [CartSummaryComponent],
 			providers: [
-				{ provide: CartService, useValue: jasmine.createSpyObj<ICartService>([]) },
+				{
+					provide: CartService, useValue: jasmine.createSpyObj<ICartService>(
+						['addItem', 'increaseItemQuantity', 'decreaseItemQuantity', 'removeItem']
+					)
+				},
 			]
 		}).compileComponents();
 

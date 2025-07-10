@@ -12,7 +12,11 @@ describe('HomeComponent', () => {
 			imports: [HomeComponent],
 			providers: [
 				provideRouter([]),
-				{ provide: CartService, useValue: jasmine.createSpyObj<ICartService>([]) },
+				{
+					provide: CartService, useValue: jasmine.createSpyObj<ICartService>(
+						['addItem', 'increaseItemQuantity', 'decreaseItemQuantity', 'removeItem']
+					)
+				},
 			]
 		}).compileComponents();
 
