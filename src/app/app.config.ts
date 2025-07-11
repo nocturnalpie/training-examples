@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { TitleStrategy, provideRouter } from '@angular/router';
+import { TitleStrategy, provideRouter, withComponentInputBinding } from '@angular/router';
 import 'zone.js';
 import { AppComponent } from './app.component';
 
@@ -11,11 +11,11 @@ import { provideSignalsStore } from './cart/service/signals-implementation/cart-
 import { ROUTES } from './routes';
 import { TemplatePageTitleStrategy } from './title.strategy';
 
-export const STORE_NAME = 'Toy Store';
+export const STORE_NAME = 'Toy Shop';
 
 bootstrapApplication(AppComponent, {
 	providers: [
-		provideRouter(ROUTES),
+		provideRouter(ROUTES, withComponentInputBinding()),
 		provideAnimationsAsync(),
 		{ provide: TitleStrategy, useClass: TemplatePageTitleStrategy },
 

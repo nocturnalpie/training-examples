@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -24,4 +24,5 @@ export class ProductsComponent {
 	];
 
 	protected readonly cart = inject(CartService);
+	protected readonly title = input();
 }

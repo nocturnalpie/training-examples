@@ -6,11 +6,17 @@ export const ROUTES: Routes = [
 	{
 		path: '',
 		component: ProductsComponent,
-		title: 'Products'
+		title: 'Products',
+		data: {
+			title: 'Products'
+		},
 	},
 	{
 		path: 'cart',
 		component: CartComponent,
-		title: 'Cart'
+		title: 'Cart',
+		data: {
+			title: 'Cart'
+		},
 	},
 ];
