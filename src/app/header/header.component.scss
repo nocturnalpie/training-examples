@@ -2,9 +2,17 @@ mat-toolbar {
 	display: flex;
 	justify-content: space-between;
 
+	#store-name-button {
+		font-weight: bold;
+		font-size: x-large;
+	}
+
 	div {
 		flex: 1;
 		display: flex;
-		justify-content: flex-end;
+		
+		&.right {
+			justify-content: flex-end;
+		}
 	}
 }

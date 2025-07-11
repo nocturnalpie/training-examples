@@ -1,11 +1,11 @@
 <mat-toolbar color="primary">
-	<div></div>
+	<div class="left"></div>
 
-	<button mat-button routerLink="">
-		<span>Welcome to the Toy Shop</span>
+	<button mat-button routerLink="" id="store-name-button">
+		Toy Shop
 	</button>
 
-	<div>
+	<div class="right">
 		<button mat-icon-button [matMenuTriggerFor]="cartMenu">
 			<mat-icon [matBadge]="cart.totalQuantity" matBadgeColor="accent">
 				shopping_cart
