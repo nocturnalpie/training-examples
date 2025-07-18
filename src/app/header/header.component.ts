@@ -1,12 +1,11 @@
-import { Component, computed, inject, viewChild } from '@angular/core';
-import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { Component, inject, viewChild } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { ActivatedRoute, Data, NavigationEnd, Router, RouterModule } from '@angular/router';
-import { filter, Observable, switchMap } from 'rxjs';
+import { RouterModule } from '@angular/router';
 import { CartSummaryComponent } from '../cart/cart-summary/cart-summary.component';
 import { CartService } from '../cart/service/cart.service.interface';
 
@@ -20,7 +19,6 @@ import { CartService } from '../cart/service/cart.service.interface';
 		MatIconModule,
 		MatBadgeModule,
 		MatMenuModule,
-		RouterModule,
 	],
 	templateUrl: './header.component.html',
 	styleUrl: './header.component.scss'
@@ -28,24 +26,12 @@ import { CartService } from '../cart/service/cart.service.interface';
 export class HeaderComponent {
 	
 	protected readonly cart = inject(CartService);
-	protected pageTitle = computed(() => this.routeData()?.['title']);
 	
+	private menuTrigger = viewChild<MatMenuTrigger>(MatMenuTrigger);
+
 	constructor() {
 		this.cart.itemAdded
-		.pipe(takeUntilDestroyed())
-		.subscribe(() => this.menuTrigger()?.openMenu());
-	}
-	
-	private readonly router = inject(Router);
-	private readonly activatedRoute = inject(ActivatedRoute);
-	private menuTrigger = viewChild<MatMenuTrigger>(MatMenuTrigger);
-	
-	private routeData = toSignal(this.router.events.pipe(
-		filter(e => e instanceof NavigationEnd),
-		switchMap(() => this.getChildOrRouteData(this.activatedRoute)),
-	));
-
-	private getChildOrRouteData(route: ActivatedRoute): Observable<Data> {
-		return route.firstChild ? this.getChildOrRouteData(route.firstChild) : route.data;
+			.pipe(takeUntilDestroyed())
+			.subscribe(() => this.menuTrigger()?.openMenu());
 	}
 }

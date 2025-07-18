@@ -1,5 +1,3 @@
-<h1>{{title()}}</h1>
-
 <div class="items">
 	@for (product of products; track product) {
 		<app-product-summary [product]="product" (clickAddToCart)="cart.addItem(product)"/>

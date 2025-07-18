@@ -1,7 +1,7 @@
 import { Component, inject, input } from '@angular/core';
 import { CartService } from '../../cart/service/cart.service.interface';
-import { Product } from '../product.interface';
 import { ProductSummaryComponent } from '../product-summary/product-summary.component';
+import { Product } from '../product.interface';
 
 @Component({
 	selector: 'app-products',
@@ -21,5 +21,4 @@ export class ProductsComponent {
 	];
 
 	protected readonly cart = inject(CartService);
-	protected readonly title = input();
 }
