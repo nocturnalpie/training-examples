@@ -5,5 +5,3 @@
 - Add sales - specific items & individual items
 
 - Cart menu is not accessible (can't get to go to cart button)
-
-- Refreshing on a product page breaks things
