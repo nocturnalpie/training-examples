@@ -1,10 +1,15 @@
-import { computed, EnvironmentProviders, makeEnvironmentProviders, signal } from '@angular/core';
+import { computed, effect, EnvironmentProviders, makeEnvironmentProviders, signal } from '@angular/core';
 import { Product } from '../../../products/product';
 import { CartItem } from '../../cart-item';
 import { CartHelpers, INITIAL_STATE } from '../cart.helpers';
 import { CartService, ICartService } from '../cart.service.interface';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 export class CartSignalsService implements ICartService {
+	private _itemAdded: Subject<void> = new Subject();
+	itemAdded: Observable<void> = this._itemAdded.asObservable();
+	
+	private _itemsInCart = signal<CartItem[]>(INITIAL_STATE)
 	get itemsInCart(): CartItem[] {
 		return this._itemsInCart();
 	}
@@ -24,11 +29,11 @@ export class CartSignalsService implements ICartService {
 	get totalQuantity(): number {
 		return computed(() => CartHelpers.totalQuantity(this._itemsInCart()))();
 	}
-
-	private _itemsInCart = signal<CartItem[]>(INITIAL_STATE)
-
-	addItem = (itemToAdd: Product): void =>
+	
+	addItem = (itemToAdd: Product): void => {
 		this._itemsInCart.update((cartItems) => CartHelpers.addItem(cartItems, itemToAdd))
+		this._itemAdded.next()
+	}
 
 	increaseItemQuantity = (itemToUpdate: CartItem) =>
 		this._itemsInCart.update((cartItems) => CartHelpers.increaseItemQuantity(cartItems, itemToUpdate))

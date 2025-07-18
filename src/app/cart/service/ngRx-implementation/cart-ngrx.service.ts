@@ -4,11 +4,15 @@ import { Product } from '../../../products/product';
 import { CartItem } from '../../cart-item';
 import { CartHelpers, INITIAL_STATE } from '../cart.helpers';
 import { CartService, ICartService } from '../cart.service.interface';
+import { Subject, Observable } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class CartNgrxService implements ICartService {
+	private _itemAdded: Subject<void> = new Subject();
+	public itemAdded: Observable<void> = this._itemAdded.asObservable();
+	
 	get itemsInCart(): CartItem[] {
 		return this.store.selectSignal(cartSelector((cartItems: CartItem[]) => cartItems))();
 	}
@@ -29,6 +33,7 @@ export class CartNgrxService implements ICartService {
 
 	addItem(itemToAdd: Product): void {
 		this.store.dispatch(addItem({ itemToAdd }));
+		this._itemAdded.next();
 	}
 	increaseItemQuantity(itemToUpdate: CartItem): void {
 		this.store.dispatch(increaseItemQuantity({ itemToUpdate }));
