@@ -1,8 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject, viewChild } from '@angular/core';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
+import { MatMenu, MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { CartSummaryComponent } from '../cart/cart-summary/cart-summary.component';
@@ -24,4 +24,9 @@ import { CartService } from '../cart/service/cart.service.interface';
 })
 export class HeaderComponent {
 	protected readonly cart = inject(CartService);
+	private menuTrigger = viewChild<MatMenuTrigger>(MatMenuTrigger);
+
+	constructor() {
+		this.cart.itemAdded.subscribe(() => this.menuTrigger()?.openMenu());
+	}
 }
