@@ -1,4 +1,7 @@
-<mat-card>
+<mat-card role="button" tabindex="0"
+	(click)="goToProduct()"
+	(keydown.enter)="goToProduct()"
+	(keydown.space)="goToProduct(); $event.preventDefault()">
 	<mat-card-header>
 		<h3>{{ product().name }}</h3>
 	</mat-card-header>
@@ -8,7 +11,10 @@
 	</mat-card-content>
 
 	<mat-card-actions>
-		<button mat-raised-button color="primary" (click)="clickAddToCart.emit()">
+		<button mat-raised-button color="primary"
+			(click)="clickAddToCart.emit(); $event.stopPropagation()"
+			(keydown.enter)="$event.stopPropagation()"
+			(keydown.space)="$event.stopPropagation()">
 			<mat-icon>add_shopping_cart</mat-icon>
 			Add to cart
 		</button>

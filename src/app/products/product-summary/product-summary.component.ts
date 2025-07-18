@@ -1,12 +1,13 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
+import { Router, RouterModule } from '@angular/router';
 import { Product } from '../product.interface';
 
 @Component({
 	selector: 'app-product-summary',
-	imports: [MatCardModule, MatButtonModule, MatIcon],
+	imports: [MatCardModule, MatButtonModule, MatIcon, RouterModule],
 	templateUrl: './product-summary.component.html',
 	styleUrl: './product-summary.component.scss'
 })
@@ -14,4 +15,9 @@ export class ProductSummaryComponent {
 	public product = input.required<Product>();
 
 	public clickAddToCart = output();
+
+	private readonly router = inject(Router);
+	protected goToProduct() {
+		this.router.navigate(['products', this.product().id])
+	}
 }
