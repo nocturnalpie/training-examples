@@ -1,0 +1,16 @@
+<mat-card>
+	<mat-card-header>
+		<h3>{{ product().name }}</h3>
+	</mat-card-header>
+
+	<mat-card-content>
+		<p><strong>Price: </strong>£{{ product().price }}</p>
+	</mat-card-content>
+
+	<mat-card-actions>
+		<button mat-raised-button color="primary" (click)="clickAddToCart.emit()">
+			<mat-icon>add_shopping_cart</mat-icon>
+			Add to cart
+		</button>
+	</mat-card-actions>
+</mat-card>

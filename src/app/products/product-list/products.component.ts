@@ -1,19 +1,16 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject, input } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
 import { CartService } from '../../cart/service/cart.service.interface';
 import { Product } from '../product';
+import { ProductSummaryComponent } from '../product-summary/product-summary.component';
 
 @Component({
 	selector: 'app-products',
-	imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule],
+	imports: [ProductSummaryComponent],
 	templateUrl: './products.component.html',
 	styleUrl: './products.component.scss',
 })
 export class ProductsComponent {
-	protected items: Product[] = [
+	protected products: Product[] = [
 		{ id: 1, name: 'Car', price: 10 },
 		{ id: 2, name: 'Xylophone', price: 50 },
 		{ id: 3, name: 'Teddy', price: 5 },
