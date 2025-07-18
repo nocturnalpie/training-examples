@@ -1,6 +1,6 @@
 import { Component, inject, input } from '@angular/core';
 import { CartService } from '../../cart/service/cart.service.interface';
-import { Product } from '../product';
+import { Product } from '../product.interface';
 import { ProductSummaryComponent } from '../product-summary/product-summary.component';
 
 @Component({

@@ -1,5 +1,5 @@
 import { computed, effect, EnvironmentProviders, makeEnvironmentProviders, signal } from '@angular/core';
-import { Product } from '../../../products/product';
+import { Product } from '../../../products/product.interface';
 import { CartItem } from '../../cart-item';
 import { CartHelpers, INITIAL_STATE } from '../cart.helpers';
 import { CartService, ICartService } from '../cart.service.interface';

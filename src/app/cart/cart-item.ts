@@ -1,4 +1,4 @@
-import { Product } from '../products/product';
+import { Product } from '../products/product.interface';
 
 export class CartItem {
 	public readonly totalPrice = this.product.price * this.quantity;

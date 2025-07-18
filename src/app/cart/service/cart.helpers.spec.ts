@@ -1,4 +1,4 @@
-import { Product } from '../../products/product';
+import { Product } from '../../products/product.interface';
 import { CartItem } from '../cart-item';
 import { CartHelpers, SHIPPING } from './cart.helpers';
 

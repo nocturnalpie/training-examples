@@ -1,5 +1,5 @@
 import { InjectionToken } from "@angular/core";
-import { Product } from "../../products/product";
+import { Product } from "../../products/product.interface";
 import { CartItem } from "../cart-item";
 import { Observable } from "rxjs";
 

@@ -1,5 +1,5 @@
 import { CartItem } from '../cart-item';
-import { Product } from '../../products/product';
+import { Product } from '../../products/product.interface';
 
 export const INITIAL_STATE: CartItem[] = [];
 export const SHIPPING = 3.98
