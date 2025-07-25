@@ -1,3 +1,13 @@
+@use '@angular/material'as mat;
+
+
+:host {
+	@include mat.toolbar-overrides((
+		container-background-color: var(--mat-sys-primary-container),
+		container-text-color: var(--mat-sys-on-primary-container),
+	));
+}
+
 mat-toolbar {
 	display: flex;
 	justify-content: space-between;
@@ -10,7 +20,7 @@ mat-toolbar {
 	div {
 		flex: 1;
 		display: flex;
-		
+
 		&.right {
 			justify-content: flex-end;
 		}
