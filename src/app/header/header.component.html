@@ -6,6 +6,9 @@
 	</button>
 
 	<div class="right">
+		<button mat-icon-button (click)="toggleThemeMode()" [matTooltip]="themeDetails().helpText">
+			<mat-icon>{{themeDetails().icon}}</mat-icon>
+		</button>
 		<button mat-icon-button [matMenuTriggerFor]="cartMenu" #cartMenuTrigger>
 			<mat-icon [matBadge]="cart.totalQuantity" matBadgeColor="accent">
 				shopping_cart
