@@ -6,13 +6,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
-import { CartSummaryComponent } from '../cart/cart-summary/cart-summary.component';
+import { CartComponent } from '../cart/cart.component';
 import { CartService } from '../cart/service/cart.service.interface';
 
 @Component({
 	selector: 'app-header',
 	imports: [
-		CartSummaryComponent,
+		CartComponent,
 		RouterModule,
 		MatToolbarModule,
 		MatButtonModule,

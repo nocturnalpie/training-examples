@@ -1,16 +1,20 @@
-import { Component, Inject } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatListModule } from '@angular/material/list';
+import { Component, inject } from '@angular/core';
+import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatList, MatListItem, MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
-import { EmptyCartComponent } from '../empty-cart/empty-cart.component';
-import { CartService, ICartService } from '../service/cart.service.interface';
+import { CartService } from '../service/cart.service.interface';
 
 @Component({
 	selector: 'app-cart-summary',
-	imports: [MatListModule, MatButtonModule, RouterModule, EmptyCartComponent],
+	imports: [
+		MatList,
+		MatListItem,
+		MatButton,
+		RouterModule,
+	],
 	templateUrl: './cart-summary.component.html',
 	styleUrl: './cart-summary.component.scss'
 })
 export class CartSummaryComponent {
-	constructor(@Inject(CartService) public readonly cart: ICartService) { }
+	protected readonly cart = inject(CartService);
 }
