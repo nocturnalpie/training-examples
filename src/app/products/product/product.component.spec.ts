@@ -14,6 +14,7 @@ describe('ProductComponent', () => {
 
 		fixture = TestBed.createComponent(ProductComponent);
 		component = fixture.componentInstance;
+		fixture.componentRef.setInput('product', { id: 1, name: 'item 1', price: 20 })
 		fixture.detectChanges();
 	});
 

@@ -7,16 +7,14 @@ import { fromEvent, tap, startWith, map } from "rxjs";
 	providedIn: 'root'
 })
 export class UserThemePreferencesService {
-	private window = inject(WINDOW);
+	private readonly window = inject(WINDOW);
+	private readonly prefersLightColorSchemeMediaQuery = this.window.matchMedia('(prefers-color-scheme: light)');
 
-	public prefersLightTheme = computed(() => {
-		const prefersLightColorSchemeMediaQuery = this.window.matchMedia('(prefers-color-scheme: light)');
-		return toSignal(
-			fromEvent<MediaQueryList>(prefersLightColorSchemeMediaQuery, 'change')
-				.pipe(
-					startWith(prefersLightColorSchemeMediaQuery),
-					map((query: MediaQueryList) => query.matches)
-				)
-		)();
-	});
+	public prefersLightTheme = toSignal(
+		fromEvent<MediaQueryList>(this.prefersLightColorSchemeMediaQuery, 'change')
+			.pipe(
+				startWith(this.prefersLightColorSchemeMediaQuery),
+				map((query: MediaQueryList) => query.matches)
+			)
+	);
 }

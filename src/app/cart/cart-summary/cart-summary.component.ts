@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { MatButton, MatButtonModule } from '@angular/material/button';
-import { MatList, MatListItem, MatListModule } from '@angular/material/list';
-import { RouterModule } from '@angular/router';
+import { MatButton } from '@angular/material/button';
+import { MatList, MatListItem } from '@angular/material/list';
+import { RouterLink } from '@angular/router';
 import { CartService } from '../service/cart.service.interface';
 
 @Component({
@@ -10,7 +10,7 @@ import { CartService } from '../service/cart.service.interface';
 		MatList,
 		MatListItem,
 		MatButton,
-		RouterModule,
+		RouterLink,
 	],
 	templateUrl: './cart-summary.component.html',
 	styleUrl: './cart-summary.component.scss'

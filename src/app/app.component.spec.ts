@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
 import { provideRouter } from '@angular/router';
-import { CartService, ICartService } from './cart/service/cart.service.interface';
+import { AppComponent } from './app.component';
+import { provideSignalsStore } from './cart/service/signals-implementation/cart-signals.service';
 
 describe('AppComponent', () => {
 	let component: AppComponent;
@@ -12,11 +12,7 @@ describe('AppComponent', () => {
 			imports: [AppComponent],
 			providers: [
 				provideRouter([]),
-				{
-					provide: CartService, useValue: jasmine.createSpyObj<ICartService>(
-						['addItem', 'increaseItemQuantity', 'decreaseItemQuantity', 'removeItem']
-					)
-				},
+				provideSignalsStore(),
 			]
 		}).compileComponents();
 

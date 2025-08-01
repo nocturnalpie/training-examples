@@ -6,7 +6,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatTooltip } from '@angular/material/tooltip';
-import { RouterModule } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 import { CartComponent } from '../cart/cart.component';
 import { CartService } from '../cart/service/cart.service.interface';
 import { ThemeModeService } from '../theme-mode/theme-mode.service';
@@ -15,7 +15,6 @@ import { ThemeModeService } from '../theme-mode/theme-mode.service';
 	selector: 'app-header',
 	imports: [
 		CartComponent,
-		RouterModule,
 		MatToolbar,
 		MatButton,
 		MatIconButton,
@@ -24,6 +23,7 @@ import { ThemeModeService } from '../theme-mode/theme-mode.service';
 		MatMenu,
 		MatMenuTrigger,
 		MatTooltip,
+		RouterLink,
 	],
 	templateUrl: './header.component.html',
 	styleUrl: './header.component.scss'
@@ -42,7 +42,7 @@ export class HeaderComponent {
 			.subscribe(() => this.menuTrigger()?.openMenu());
 	}
 
-	toggleThemeMode(): void {
+	public toggleThemeMode(): void {
 		this.themeModeService.toggleThemeMode();
 	}
 }

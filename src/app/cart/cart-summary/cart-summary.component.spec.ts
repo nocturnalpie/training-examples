@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CartSummaryComponent } from './cart-summary.component';
-import { CartService, ICartService } from '../service/cart.service.interface';
+import { provideSignalsStore } from '../service/signals-implementation/cart-signals.service';
+import { provideRouter } from '@angular/router';
 
 describe('CartSummaryComponent', () => {
 	let component: CartSummaryComponent;
@@ -10,12 +11,9 @@ describe('CartSummaryComponent', () => {
 		await TestBed.configureTestingModule({
 			imports: [CartSummaryComponent],
 			providers: [
-				{
-					provide: CartService, useValue: jasmine.createSpyObj<ICartService>(
-						['addItem', 'increaseItemQuantity', 'decreaseItemQuantity', 'removeItem']
-					)
-				},
-			]
+				provideRouter([]),
+				provideSignalsStore(),
+			],
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(CartSummaryComponent);
