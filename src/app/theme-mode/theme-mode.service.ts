@@ -1,7 +1,6 @@
 import { DOCUMENT } from '@angular/common';
-import { computed, effect, inject, Injectable, InjectionToken, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { fromEvent, map, startWith, tap } from 'rxjs';
+import { computed, effect, inject, Injectable, InjectionToken, linkedSignal, signal } from '@angular/core';
+import { UserThemePreferencesService } from './user-theme-preferences.service';
 
 export const WINDOW = new InjectionToken<Window>('Global window object', {
   factory: () => window
@@ -31,26 +30,12 @@ export const THEMES: { [themeName: string]: ThemeDetails } = {
 })
 export class ThemeModeService {
 	private document = inject(DOCUMENT);
-	private window = inject(WINDOW);
-	private isDarkTheme = signal(true);
+	private userThemePreferencesService = inject(UserThemePreferencesService);
+	private isDarkTheme = linkedSignal<boolean>(() => !this.userThemePreferencesService.prefersLightTheme());
 	
 	public themeDetails = computed(() => this.getThemeDetails(this.isDarkTheme()));
 
 	constructor() {
-		const prefersLightColorSchemeMediaQuery = this.window.matchMedia('(prefers-color-scheme: light)');
-		const prefersLightColorScheme = toSignal(
-			fromEvent<MediaQueryList>(prefersLightColorSchemeMediaQuery, 'change')
-				.pipe(
-					tap(query => console.log(query)),
-					startWith(prefersLightColorSchemeMediaQuery),
-					map((query: MediaQueryList) => query.matches)
-				)
-		);
-
-		effect(() => {
-			this.isDarkTheme.set(!prefersLightColorScheme())
-		});
-
 		effect(() => {
 			this.document.body.classList.add(this.getThemeDetails(this.isDarkTheme()).class);
 			this.document.body.classList.remove(this.getThemeDetails(!this.isDarkTheme()).class);
