@@ -1,5 +1,5 @@
 <div class="items">
-	@for (product of products; track product) {
+	@for (product of products(); track product) {
 		<app-product-summary [product]="product" (clickAddToCart)="cart.addItem(product)"/>
 	}
 </div>

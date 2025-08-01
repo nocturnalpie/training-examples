@@ -1,10 +1,10 @@
-import { Product } from '../../products/product.interface';
+import { ProductSummary } from '../../products/product.interface';
 import { CartItem } from '../cart-item';
 import { CartHelpers, SHIPPING } from './cart.helpers';
 
 describe('CartHelpers', () => {
-	const product1: Product = { id: 1, name: '', price: 10 };
-	const product2: Product = { id: 2, name: '', price: 14 };
+	const product1: ProductSummary = { id: 1, name: '', price: 10 };
+	const product2: ProductSummary = { id: 2, name: '', price: 14 };
 
 	describe('total', () => {
 		const testCases: { itemsInCart: CartItem[]; expectedTotal: number }[] = [

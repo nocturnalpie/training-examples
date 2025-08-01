@@ -1,6 +1,6 @@
 import { EnvironmentProviders, Injectable, makeEnvironmentProviders } from '@angular/core';
 import { Store, createAction, createFeatureSelector, createReducer, createSelector, on, props, provideState, provideStore } from '@ngrx/store';
-import { Product } from '../../../products/product.interface';
+import { ProductSummary } from '../../../products/product.interface';
 import { CartItem } from '../../cart-item';
 import { CartHelpers, INITIAL_STATE } from '../cart.helpers';
 import { CartService, ICartService } from '../cart.service.interface';
@@ -31,7 +31,7 @@ export class CartNgrxService implements ICartService {
 
 	constructor(private store: Store<CartItem[]>) { }
 
-	addItem(itemToAdd: Product): void {
+	addItem(itemToAdd: ProductSummary): void {
 		this.store.dispatch(addItem({ itemToAdd }));
 		this._itemAdded.next();
 	}
@@ -53,7 +53,7 @@ const cartSelector = <T>(callback: (cartItems: CartItem[]) => T) => createSelect
 )
 
 // Actions
-const addItem = createAction('addItem', props<{ itemToAdd: Product }>());
+const addItem = createAction('addItem', props<{ itemToAdd: ProductSummary }>());
 const increaseItemQuantity = createAction('increaseItemQuantity', props<{ itemToUpdate: CartItem }>());
 const decreaseItemQuantity = createAction('decreaseItemQuantity', props<{ itemToUpdate: CartItem }>());
 const removeItem = createAction('removeItem', props<{ itemToRemove: CartItem }>());

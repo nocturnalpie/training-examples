@@ -1,9 +1,9 @@
-import { computed, effect, EnvironmentProviders, makeEnvironmentProviders, signal } from '@angular/core';
-import { Product } from '../../../products/product.interface';
+import { computed, EnvironmentProviders, makeEnvironmentProviders, signal } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { ProductSummary } from '../../../products/product.interface';
 import { CartItem } from '../../cart-item';
 import { CartHelpers, INITIAL_STATE } from '../cart.helpers';
 import { CartService, ICartService } from '../cart.service.interface';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 export class CartSignalsService implements ICartService {
 	private _itemAdded: Subject<void> = new Subject();
@@ -30,7 +30,7 @@ export class CartSignalsService implements ICartService {
 		return computed(() => CartHelpers.totalQuantity(this._itemsInCart()))();
 	}
 	
-	addItem = (itemToAdd: Product): void => {
+	addItem = (itemToAdd: ProductSummary): void => {
 		this._itemsInCart.update((cartItems) => CartHelpers.addItem(cartItems, itemToAdd))
 		this._itemAdded.next()
 	}

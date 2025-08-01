@@ -1,5 +1,5 @@
 import { CartItem } from '../cart-item';
-import { Product } from '../../products/product.interface';
+import { ProductSummary } from '../../products/product.interface';
 
 export const INITIAL_STATE: CartItem[] = [];
 export const SHIPPING = 3.98
@@ -16,7 +16,7 @@ export class CartHelpers {
 		0
 	)
 
-	static addItem = (itemsInCart: CartItem[], itemToAdd: Product): CartItem[] => {
+	static addItem = (itemsInCart: CartItem[], itemToAdd: ProductSummary): CartItem[] => {
 		const itemInCart = CartHelpers.findProduct(itemsInCart, itemToAdd);
 
 		if (itemInCart) {
@@ -46,7 +46,7 @@ export class CartHelpers {
 		(cartItem) => cartItem.product.id != itemToRemove.product.id
 	)
 
-	private static findProduct = (itemsInCart: CartItem[], item: Product): CartItem | undefined => itemsInCart.find(
+	private static findProduct = (itemsInCart: CartItem[], item: ProductSummary): CartItem | undefined => itemsInCart.find(
 		(cartItem) => cartItem.product.id === item.id
 	)
 };

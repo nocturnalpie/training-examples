@@ -1,5 +1,5 @@
 import { InjectionToken } from "@angular/core";
-import { Product } from "../../products/product.interface";
+import { ProductSummary } from "../../products/product.interface";
 import { CartItem } from "../cart-item";
 import { Observable } from "rxjs";
 
@@ -13,7 +13,7 @@ export interface ICartService {
 	totalQuantity: number;
 	itemAdded: Observable<void>;
 
-	addItem(itemToAdd: Product): void;
+	addItem(itemToAdd: ProductSummary): void;
 	increaseItemQuantity(itemToUpdate: CartItem): void;
 	decreaseItemQuantity(itemToUpdate: CartItem): void;
 	removeItem(itemToRemove: CartItem): void;
