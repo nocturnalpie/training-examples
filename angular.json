@@ -28,7 +28,6 @@
           "options": {
             "index": "src/index.html",
             "browser": "src/app/app.config.ts",
-            "polyfills": ["zone.js"],
             "outputPath": "dist",
             "styles": [
               "src/global_styles.scss"
@@ -54,8 +53,7 @@
             "tsConfig": "tsconfig.spec.json",
             "styles": [
               "src/global_styles.scss"
-            ],
-            "polyfills": ["zone.js", "zone.js/testing"]
+            ]
           }
         }
       },

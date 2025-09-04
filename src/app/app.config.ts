@@ -1,7 +1,6 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { TitleStrategy, provideRouter, withComponentInputBinding } from '@angular/router';
-import 'zone.js';
 import { AppComponent } from './app.component';
 import { ROUTES } from './routes';
 import { TemplatePageTitleStrategy } from './title.strategy';
