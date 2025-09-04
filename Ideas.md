@@ -5,3 +5,5 @@
 - Add sales - specific items & individual items
 
 - Cart menu is not accessible (can't get to go to cart button)
+
+- Save cart to client storage to save across sessions
