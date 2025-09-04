@@ -10,6 +10,7 @@ import { TemplatePageTitleStrategy } from './title.strategy';
 // import { provideNgRxStore } from './app/cart/service/ngRx-implementation/cart-ngrx.service';
 import { provideSignalsStore } from './cart/service/signals-implementation/cart-signals.service';
 import { provideMockProductsService } from './products/service/mock-data.implementation/mock-product-service';
+import { provideExperimentalZonelessChangeDetection } from '@angular/core';
 
 export const STORE_NAME = 'Toy Shop';
 
@@ -19,6 +20,8 @@ bootstrapApplication(AppComponent, {
 		provideAnimationsAsync(),
 		{ provide: TitleStrategy, useClass: TemplatePageTitleStrategy },
 		provideMockProductsService(),
+
+		provideExperimentalZonelessChangeDetection(),
 
 		/* Choose an implementation here */
 		provideSignalsStore(),
