@@ -1,14 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { MatButton } from '@angular/material/button';
-import { MatList, MatListItem } from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 import { RouterLink } from '@angular/router';
 import { CartService } from '../service/cart.service.interface';
 
 @Component({
 	selector: 'app-cart-summary',
 	imports: [
-		MatList,
-		MatListItem,
+		MatListModule,
 		MatButton,
 		RouterLink,
 	],
