@@ -1,12 +1,12 @@
 <mat-list>
 	@for(item of cart.itemsInCart; track item) {
 	<mat-list-item>
-		<p matListItemTitle>{{ item.product.name }}</p>
+		<span matListItemTitle>{{ item.product.name }}</span>
 
-		<p matListItemLine>
+		<span matListItemLine>
 			<strong>Price: </strong>
 			£{{ item.product.price }} x {{ item.quantity }} = £{{ item.totalPrice }}
-		</p>
+		</span>
 
 		<button
 			mat-icon-button
