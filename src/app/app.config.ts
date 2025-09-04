@@ -7,7 +7,7 @@ import { ROUTES } from './routes';
 import { TemplatePageTitleStrategy } from './title.strategy';
 
 /* Choose an implementation here */
-// import { provideNgRxStore } from './app/cart/service/ngRx-implementation/cart-ngrx.service';
+// import { provideNgRxStore } from './cart/service/ngRx-implementation/cart-ngrx.service';
 import { provideSignalsStore } from './cart/service/signals-implementation/cart-signals.service';
 import { provideMockProductsService } from './products/service/mock-data.implementation/mock-product-service';
 import { provideExperimentalZonelessChangeDetection } from '@angular/core';
