@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CartComponent } from './cart.component';
 import { provideRouter } from '@angular/router';
+import { CartComponent } from './cart.component';
 import { CartService, ICartService } from './service/cart.service.interface';
 
 describe('CartComponent', () => {
@@ -12,11 +12,7 @@ describe('CartComponent', () => {
 			imports: [CartComponent],
 			providers: [
 				provideRouter([]),
-				{
-					provide: CartService, useValue: jasmine.createSpyObj<ICartService>(
-						['addItem', 'increaseItemQuantity', 'decreaseItemQuantity', 'removeItem']
-					)
-				},
+				{provide: CartService, useValue: jasmine.createSpyObj<ICartService>(['totalQuantity'])},
 			],
 		}).compileComponents();
 

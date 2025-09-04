@@ -1,17 +1,15 @@
-import { InjectionToken } from "@angular/core";
+import { InjectionToken, Signal } from "@angular/core";
 import { ProductSummary } from "../../products/product.interface";
 import { CartItem } from "../cart-item";
-import { Observable } from "rxjs";
 
 export const CartService = new InjectionToken<ICartService>('Cart Service Interface');
 
 export interface ICartService {
-	itemsInCart: CartItem[];
-	subtotal: number;
-	deliveryFee: number;
-	total: number;
-	totalQuantity: number;
-	itemAdded: Observable<void>;
+	itemsInCart: Signal<CartItem[]>;
+	subtotal: Signal<number>;
+	deliveryFee: Signal<number>;
+	total: Signal<number>;
+	totalQuantity: Signal<number>;
 
 	addItem(itemToAdd: ProductSummary): void;
 	increaseItemQuantity(itemToUpdate: CartItem): void;

@@ -1,4 +1,4 @@
-@if (cart.totalQuantity > 0) {
+@if (cart.totalQuantity() > 0) {
 	@if (summary()) {
 		<app-cart-summary/>
 	} @else {

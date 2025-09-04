@@ -1,5 +1,5 @@
 <mat-list>
-	@for(item of cart.itemsInCart; track item) {
+	@for(item of cart.itemsInCart(); track item) {
 	<mat-list-item>
 		<span matListItemTitle>{{ item.product.name }}</span>
 
@@ -29,8 +29,8 @@
 	}
 
 	<mat-list-item role="listitem">
-		<p>Shipping: {{ cart.deliveryFee ? '£' + cart.deliveryFee : 'Free' }}</p>
+		<p>Shipping: {{ cart.deliveryFee() ? '£' + cart.deliveryFee : 'Free' }}</p>
 	</mat-list-item>
 </mat-list>
 
-<p class="total"><strong>Total: </strong>£{{ cart.total }}</p>
+<p class="total"><strong>Total: </strong>£{{ cart.total() }}</p>

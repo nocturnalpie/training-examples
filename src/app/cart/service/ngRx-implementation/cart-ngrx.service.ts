@@ -1,50 +1,37 @@
-import { EnvironmentProviders, Injectable, makeEnvironmentProviders } from '@angular/core';
-import { Store, createAction, createFeatureSelector, createReducer, createSelector, on, props, provideState, provideStore } from '@ngrx/store';
+import { EnvironmentProviders, inject, Injectable, makeEnvironmentProviders } from '@angular/core';
+import { createAction, createFeatureSelector, createReducer, createSelector, on, props, provideState, provideStore, Store } from '@ngrx/store';
 import { ProductSummary } from '../../../products/product.interface';
 import { CartItem } from '../../cart-item';
 import { CartHelpers, INITIAL_STATE } from '../cart.helpers';
 import { CartService, ICartService } from '../cart.service.interface';
-import { Subject, Observable } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class CartNgrxService implements ICartService {
-	private _itemAdded: Subject<void> = new Subject();
-	public itemAdded: Observable<void> = this._itemAdded.asObservable();
+	private store = inject(Store<CartItem[]>);
 	
-	get itemsInCart(): CartItem[] {
-		return this.store.selectSignal(cartSelector((cartItems: CartItem[]) => cartItems))();
-	}
-	get subtotal(): number {
-		return this.store.selectSignal(cartSelector((cartItems: CartItem[]) => CartHelpers.subtotal(cartItems ?? [])))();
-	}
-	get deliveryFee(): number {
-		return this.store.selectSignal(cartSelector((cartItems: CartItem[]) => CartHelpers.deliveryFee(cartItems ?? [])))();
-	}
-	get total(): number {
-		return this.store.selectSignal(cartSelector((cartItems: CartItem[]) => CartHelpers.total(cartItems ?? [])))();
-	}
-	get totalQuantity(): number {
-		return this.store.selectSignal(cartSelector((cartItems: CartItem[]) => CartHelpers.totalQuantity(cartItems ?? [])))();
-	}
+	itemsInCart = this.store.selectSignal(cartSelector((cartItems: CartItem[]) => cartItems));
 
-	constructor(private store: Store<CartItem[]>) { }
+	subtotal = this.store.selectSignal(cartSelector((cartItems: CartItem[]) => CartHelpers.subtotal(cartItems ?? [])));
 
-	addItem(itemToAdd: ProductSummary): void {
+	deliveryFee = this.store.selectSignal(cartSelector((cartItems: CartItem[]) => CartHelpers.deliveryFee(cartItems ?? [])));
+
+	total = this.store.selectSignal(cartSelector((cartItems: CartItem[]) => CartHelpers.total(cartItems ?? [])));
+
+	totalQuantity = this.store.selectSignal(cartSelector((cartItems: CartItem[]) => CartHelpers.totalQuantity(cartItems ?? [])));
+
+	addItem = (itemToAdd: ProductSummary): void => 
 		this.store.dispatch(addItem({ itemToAdd }));
-		this._itemAdded.next();
-	}
-	increaseItemQuantity(itemToUpdate: CartItem): void {
-		this.store.dispatch(increaseItemQuantity({ itemToUpdate }));
-	}
-	decreaseItemQuantity(itemToUpdate: CartItem): void {
-		this.store.dispatch(decreaseItemQuantity({ itemToUpdate }));
-	}
-	removeItem(itemToRemove: CartItem): void {
-		this.store.dispatch(removeItem({ itemToRemove }));
-	}
 
+	increaseItemQuantity = (itemToUpdate: CartItem): void =>
+		this.store.dispatch(increaseItemQuantity({ itemToUpdate }));
+
+	decreaseItemQuantity = (itemToUpdate: CartItem): void =>
+		this.store.dispatch(decreaseItemQuantity({ itemToUpdate }));
+
+	removeItem = (itemToRemove: CartItem): void =>
+		this.store.dispatch(removeItem({ itemToRemove }));
 }
 
 const cartSelector = <T>(callback: (cartItems: CartItem[]) => T) => createSelector(

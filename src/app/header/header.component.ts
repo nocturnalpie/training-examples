@@ -1,12 +1,11 @@
-import { Component, inject, viewChild } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Component, effect, inject, viewChild } from '@angular/core';
 import { MatBadge } from '@angular/material/badge';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatTooltip } from '@angular/material/tooltip';
-import { RouterLink, RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { CartComponent } from '../cart/cart.component';
 import { CartService } from '../cart/service/cart.service.interface';
 import { ThemeModeService } from '../theme-mode/theme-mode.service';
@@ -37,9 +36,11 @@ export class HeaderComponent {
 	private menuTrigger = viewChild<MatMenuTrigger>(MatMenuTrigger);
 
 	constructor() {
-		this.cart.itemAdded
-			.pipe(takeUntilDestroyed())
-			.subscribe(() => this.menuTrigger()?.openMenu());
+		effect(() => {
+			if(this.cart.itemsInCart()) {
+				this.menuTrigger()?.openMenu();
+			}
+		});
 	}
 
 	public toggleThemeMode(): void {
